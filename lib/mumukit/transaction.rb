@@ -24,4 +24,5 @@ end
 require_relative 'transaction/logger_formatter'
 require_relative 'transaction/rack_common_logger'
 require_relative 'transaction/rest_client'
+require_relative 'transaction/middleware'
 require_relative 'transaction/version'
