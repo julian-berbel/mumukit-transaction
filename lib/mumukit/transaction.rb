@@ -2,10 +2,10 @@ require 'request_store'
 require 'mumukit/core'
 
 module Mumukit::Transaction
-  LOG_TAGS = %i(x_request_id x_forwarded_for current_uid)
+  LOG_TAGS = %i(request_id forwarded_for request_uid)
 
   def self.transaction_headers
-    LOG_TAGS.map { |it| [it.upcase, send(it)] }.to_h
+    LOG_TAGS.map { |it| ["X_#{it.upcase}", send(it)] }.to_h
   end
 
   LOG_TAGS.each do |it|
