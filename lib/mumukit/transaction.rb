@@ -2,7 +2,7 @@ require 'request_store'
 require 'mumukit/core'
 
 module Mumukit::Transaction
-  LOG_TAGS = %i(x_request_id client_ip current_uid)
+  LOG_TAGS = %i(x_request_id x_forwarded_for current_uid)
 
   def self.transaction_headers
     LOG_TAGS.map { |it| [it.upcase, send(it)] }.to_h
