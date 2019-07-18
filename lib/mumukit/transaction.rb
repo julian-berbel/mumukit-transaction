@@ -6,7 +6,7 @@ module Mumukit::Transaction
 
   class << self
     def transaction_headers
-      LOG_TAGS.map { |it| [to_header(it), send(it)] }.to_h
+      LOG_TAGS.map { |it| [to_header(it), send(it)] }.to_h.compact
     end
 
     LOG_TAGS.each do |it|
