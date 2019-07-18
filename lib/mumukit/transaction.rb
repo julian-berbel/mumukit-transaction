@@ -21,10 +21,22 @@ module Mumukit::Transaction
           .join(', ')
     end
 
+    def with_transaction_headers(args)
+      is_safe_domain?(URI.parse(args[:url]).hostname) ? args.deep_merge(headers: transaction_headers) : args
+    end
+
     private
 
     def to_header(log_tag)
       "X-#{log_tag.upcase}".gsub('_', '-')
+    end
+
+    def is_safe_domain?(hostname)
+      safe_domains.any? { |it| hostname.end_with? it }
+    end
+
+    def safe_domains
+      []
     end
   end
 end
