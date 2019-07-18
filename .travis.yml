@@ -1,7 +1,14 @@
----
 sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.3.1
+- 2.3.1
 before_install: gem install bundler -v 2.0.1
+deploy:
+  provider: rubygems
+  api_key:
+    secure: E3zjtw+2DByeKgGVZXKt65ImZn5/F1cur2kFZN7e0aHyQb0VXMnvI3xvVlavCv2MxigEzJ86pZ1ByEjk7VSEyuOdHtpoh2xDo/knZm29+HrUliqDn3D9DsSvNRuG1vqtD+7VeHS9acTnqKQqC+2Adpsye3tAvYGw37GltPJdlsWe8IJtSDeR3cFLE1qqp1nOxFQ+tmDb7sWIlRr5bEMGQQpoS9WIG/pRSjUIrVmrxqBvde9uJPPQHRdIpHmBgucTYxG8tbbulGLnFKWPyyt+TNWpJAyvg7mOl29leMM1J5tb9o5J7MN8fRlMFXSDLgDX3ll8kpYTKqpG2TWLJzVezhb9g5WTwLxsHOIqopLifjXxzLR6s545jkDPMoO0Avx3JtAz/2JAIuxCs+crT37il0gX1+D1H5UWEt4rQp/M84FWEDJy2mkAdZLGrpMUhb5W8PkBNtNJrZ80qilP4jU7zqAzARptajGLaj13wfOJhsXZ9eEOhglnN6wb02HTkgqNV5Hap+pWR+qbcdE3vVRzfMQS8v1lXTJ3EaLmxsQ2Z8o3dJZe7ncZYUD3Z0C3bl/kzkLgVqGPZeWp0zz+Zyrp9WbH2Gyw15Vk2471D+dKghXRdReml6gDmRmA+DpdXvLbUpnaxZu92Zq/Zew2ei2BHI1R+JqNQ5a00HskTgXIryU=
+  gem: mumukit-transaction
+  on:
+    tags: true
+    repo: mumuki/mumukit-transaction
