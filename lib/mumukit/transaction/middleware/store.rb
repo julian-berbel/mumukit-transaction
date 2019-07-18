@@ -5,12 +5,19 @@ module Mumukit::Transaction::Middleware
     end
 
     def call(env)
-      r = ActionDispatch::Request.new(env)
-      Mumukit::Transaction.request_id    = r.request_id
-      Mumukit::Transaction.forwarded_for = r.x_forwarded_for || r.remote_ip
-      Mumukit::Transaction.request_uid   = r.headers['X-REQUEST-UID']
+      request = ActionDispatch::Request.new(env)
+      Mumukit::Transaction.request_id    = request.request_id
+      Mumukit::Transaction.forwarded_for = first_forward(request.x_forwarded_for) || request.remote_ip
+      Mumukit::Transaction.request_uid   = request.headers['X-REQUEST-UID']
 
       @app.call(env)
+    end
+
+    private
+
+    def first_forward(forwards)
+      return unless forwards
+      forwards.split(', ').first
     end
   end
 end
