@@ -1,4 +1,4 @@
-module Mumukit::Transaction::Middleware
+module Rack::RequestTracker::Middleware
   class Store
     def initialize(app)
       @app = app
@@ -6,9 +6,9 @@ module Mumukit::Transaction::Middleware
 
     def call(env)
       request = ActionDispatch::Request.new(env)
-      Mumukit::Transaction.request_id    = request.request_id
-      Mumukit::Transaction.forwarded_for = first_forward(request.x_forwarded_for) || request.remote_ip
-      Mumukit::Transaction.request_uid   = request.headers['X-REQUEST-UID']
+      Rack::RequestTracker.request_id    = request.request_id
+      Rack::RequestTracker.forwarded_for = first_forward(request.x_forwarded_for) || request.remote_ip
+      Rack::RequestTracker.request_uid   = request.headers['X-REQUEST-UID']
 
       @app.call(env)
     end

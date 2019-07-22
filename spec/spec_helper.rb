@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'mumukit/transaction'
+require 'rack/request_tracker'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

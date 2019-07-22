@@ -1,7 +1,7 @@
 require 'request_store'
 require 'mumukit/core'
 
-module Mumukit::Transaction
+module Rack::RequestTracker
   LOG_TAGS = %i(request_id forwarded_for request_uid)
 
   class << self
@@ -41,8 +41,8 @@ module Mumukit::Transaction
   end
 end
 
-require_relative 'transaction/logger_formatter'
-require_relative 'transaction/rack_common_logger'
-require_relative 'transaction/rest_client'
-require_relative 'transaction/middleware'
-require_relative 'transaction/version'
+require_relative 'request_tracker/logger_formatter'
+require_relative 'request_tracker/rack_common_logger'
+require_relative 'request_tracker/rest_client'
+require_relative 'request_tracker/middleware'
+require_relative 'request_tracker/version'

@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mumukit/transaction/version'
+require 'rack/request_tracker/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'mumukit-transaction'
-  spec.version       = Mumukit::Transaction::VERSION
+  spec.name          = 'rack-request-tracker'
+  spec.version       = Rack::RequestTracker::VERSION
   spec.authors       = ['Julián Berbel Alt', 'Franco Bulgarelli']
   spec.email         = ['julian@mumuki.org', 'franco@mumuki.org']
   spec.summary       = 'Bunch of patches and rack middlewares to allow for transactional logs'
-  spec.homepage      = 'http://github.com/mumuki/mumukit-transaction'
+  spec.homepage      = 'http://github.com/mumuki/rack-request-tracker'
   spec.license       = 'MIT'
 
   spec.files         = Dir['lib/**/**']

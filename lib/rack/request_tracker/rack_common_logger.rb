@@ -12,7 +12,7 @@ class Rack::CommonLogger
         env['HTTP_X_FORWARDED_FOR'] || env["REMOTE_ADDR"] || "-",
         env["REMOTE_USER"] || "-",
         now.strftime("%d/%b/%Y:%H:%M:%S %z"),
-        Mumukit::Transaction.compute_tags,
+        Rack::RequestTracker.compute_tags,
         env[Rack::REQUEST_METHOD],
         env[Rack::PATH_INFO],
         env[Rack::QUERY_STRING].empty? ? "" : "?"+env[Rack::QUERY_STRING],
