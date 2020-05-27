@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'actionpack', '~> 5.1'
+  spec.add_dependency 'actionpack', '>= 5.1', '< 7.0'
   spec.add_dependency 'request_store', '~> 1.4'
   spec.add_dependency 'mumukit-core', '~> 1.14'
 
