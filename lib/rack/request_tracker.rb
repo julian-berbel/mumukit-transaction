@@ -2,7 +2,7 @@ require 'request_store'
 require 'mumukit/core'
 
 module Rack::RequestTracker
-  LOG_TAGS = %i(request_id forwarded_for request_uid)
+  LOG_TAGS = %i(request_id forwarded_for request_uid organization)
 
   class << self
     def transaction_headers
