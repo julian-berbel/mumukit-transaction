@@ -16,8 +16,7 @@ module Rack::RequestTracker
 
     def compute_tags
       LOG_TAGS
-          .map { |it| send it }
-          .compact
+          .map { |it| send(it) || 'tracker-tag-absent' }
           .join(', ')
     end
 
