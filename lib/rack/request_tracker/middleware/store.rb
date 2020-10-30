@@ -11,6 +11,7 @@ module Rack::RequestTracker::Middleware
       Rack::RequestTracker.forwarded_for = first_forward(request.x_forwarded_for) || request.remote_ip
       Rack::RequestTracker.request_uid   = request.headers['X-REQUEST-UID']
       Rack::RequestTracker.organization  = request.headers['X-ORGANIZATION']
+      Rack::RequestTracker.user_agent    = request.headers['X-USER-AGENT']
 
       @app.call(env)
     end

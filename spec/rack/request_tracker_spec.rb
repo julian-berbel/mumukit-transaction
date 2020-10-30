@@ -3,6 +3,7 @@ RSpec.describe Rack::RequestTracker do
   before { subject.request_uid = 'some uid' }
   before { subject.forwarded_for = 'some ip' }
   before { subject.organization = 'some organization' }
+  before { subject.user_agent = 'some user agent' }
 
   after { RequestStore.clear! }
 
@@ -11,7 +12,7 @@ RSpec.describe Rack::RequestTracker do
   end
 
   it 'has log tags' do
-    expect(subject::LOG_TAGS).to eq %i(request_id forwarded_for request_uid organization)
+    expect(subject::LOG_TAGS).to eq %i(request_id forwarded_for request_uid organization user_agent)
   end
 
   it 'can set each log tag separately' do
@@ -22,13 +23,13 @@ RSpec.describe Rack::RequestTracker do
 
   describe '.compute_tags' do
     context 'when tags are all set' do
-      it { expect(subject.compute_tags).to eq 'some id, some ip, some uid, some organization' }
+      it { expect(subject.compute_tags).to eq 'some id, some ip, some uid, some organization, some user agent' }
     end
 
     context 'when some tag is not set' do
       before { subject.request_uid = nil }
 
-      it { expect(subject.compute_tags).to eq 'some id, some ip, tracker-tag-absent, some organization' }
+      it { expect(subject.compute_tags).to eq 'some id, some ip, tracker-tag-absent, some organization, some user agent' }
     end
   end
 
@@ -37,7 +38,8 @@ RSpec.describe Rack::RequestTracker do
       it { expect(subject.transaction_headers).to eq 'X-REQUEST-ID' => 'some id',
                                                      'X-REQUEST-UID' => 'some uid',
                                                      'X-FORWARDED-FOR' => 'some ip',
-                                                     'X-ORGANIZATION' => 'some organization' }
+                                                     'X-ORGANIZATION' => 'some organization',
+                                                     'X-USER-AGENT' => 'some user agent' }
 
     end
 
@@ -46,7 +48,8 @@ RSpec.describe Rack::RequestTracker do
 
       it { expect(subject.transaction_headers).to eq 'X-REQUEST-ID' => 'some id',
                                                      'X-FORWARDED-FOR' => 'some ip',
-                                                     'X-ORGANIZATION' => 'some organization' }
+                                                     'X-ORGANIZATION' => 'some organization',
+                                                     'X-USER-AGENT' => 'some user agent' }
     end
   end
 
@@ -59,7 +62,8 @@ RSpec.describe Rack::RequestTracker do
                                                                                                              'X-REQUEST-ID' => 'some id',
                                                                                                              'X-REQUEST-UID' => 'some uid',
                                                                                                              'X-FORWARDED-FOR' => 'some ip',
-                                                                                                             'X-ORGANIZATION' => 'some organization'
+                                                                                                             'X-ORGANIZATION' => 'some organization',
+                                                                                                             'X-USER-AGENT' => 'some user agent'
                                                                                                            } }
     end
 
