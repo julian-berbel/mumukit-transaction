@@ -1,9 +1,11 @@
 name: Test and deploy
 
-on: push
+on:
+- push
+- workflow_dispatch
 
 jobs:
-  test:
+  test_and_deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
