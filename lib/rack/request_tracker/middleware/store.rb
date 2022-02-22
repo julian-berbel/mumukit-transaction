@@ -20,7 +20,7 @@ module Rack::RequestTracker::Middleware
 
     def first_forward(forwards)
       return unless forwards
-      forwards.split(', ').first
+      forwards.split(',').first
     end
   end
 end
